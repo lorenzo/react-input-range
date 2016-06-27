@@ -12,12 +12,6 @@ import { autobind, captialize, distanceTo, isDefined, isObject, length } from '.
 import { maxMinValuePropType } from './propTypes';
 
 /**
- * A map for storing internal members
- * @const {WeakMap}
- */
-const internals = new WeakMap();
-
-/**
  * An object storing keyboard key codes
  * @const {Object.<string, number>}
  */
@@ -236,9 +230,6 @@ export default class InputRange extends React.Component {
   constructor(props) {
     super(props);
 
-    // Private
-    internals.set(this, {});
-
     // Auto-bind
     autobind([
       'formatLabel',
@@ -453,7 +444,7 @@ export default class InputRange extends React.Component {
    * @param {SyntheticEvent} event - User event
    */
   handleInteractionStart() {
-    const _this = internals.get(this);
+    const _this = this;
 
     if (!this.props.onChangeComplete || isDefined(_this.startValue)) {
       return;
@@ -467,7 +458,7 @@ export default class InputRange extends React.Component {
    * @param {SyntheticEvent} event - User event
    */
   handleInteractionEnd() {
-    const _this = internals.get(this);
+    const _this = this;
 
     if (!this.props.onChangeComplete || !isDefined(_this.startValue)) {
       return;
